@@ -7,7 +7,9 @@
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "jahid101",
   "license": "ISC",
@@ -20,9 +22,39 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
     "@electron-forge/plugin-fuses": "^7.4.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "^31.2.0"
+    "electron": "^31.2.0",
+    "electron-builder": "^24.13.3"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1"
+  },
+  "build": {
+    "win": {
+      "target": "nsis"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "main.js",
+      "package.json"
+    ],
+    "extraResources": {
+      "from": "dist/",
+      "to": "resources/",
+      "filter": ["**/*"]
+    },
+    "extraFiles": [
+      {
+        "from": "dist/",
+        "to": "resources/",
+        "filter": ["**/*"]
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
   }
 }
