@@ -1,16 +1,23 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
+const isDev = process.env.NODE_ENV !== 'production';
+const isMac = process.platform === 'darwin';
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 800,
+        width: isDev ? 1000 : 500,
         height: 600,
+        title: 'First Electron App',
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }
     })
 
-    win.loadFile('index.html')
+    if (isDev) {
+        win.webContents.openDevTools();
+    }
+
+    win.loadFile('renderer/index.html')
 }
 
 app.whenReady().then(() => {
@@ -26,5 +33,5 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
     console.log('App is closed')
-    if (process.platform !== 'darwin') app.quit()
+    if (isMac !== 'darwin') app.quit()
 })
