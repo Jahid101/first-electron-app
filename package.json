@@ -1,0 +1,15 @@
+{
+  "name": "electron-app-101",
+  "version": "1.0.0",
+  "description": "Exploring electronJS",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jahid101",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^31.2.0"
+  }
+}
