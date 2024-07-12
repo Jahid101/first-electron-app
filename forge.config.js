@@ -11,6 +11,11 @@ module.exports = {
       name: '@electron-forge/maker-squirrel',
       config: {},
     },
+    // For macOS .dmg file (Only generate in macOS)
+    {
+      name: '@electron-forge/maker-dmg',
+      config: {}
+    },
     {
       name: '@electron-forge/maker-zip',
       platforms: ['darwin'],

@@ -1,11 +1,11 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV == 'production';
 const isMac = process.platform === 'darwin';
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: isDev ? 1000 : 500,
+        width: isDev ? 1000 : 800,
         height: 600,
         title: 'First Electron App',
         webPreferences: {
